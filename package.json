@@ -9,7 +9,6 @@
     "description": "Abstraction layer for JSON storage",
     "dependencies": {
         "vows": "0.6.x", 
-        "redis": "~0.7.x",
         "rimraf": "2.0.x",
         "step": "0.0.x"
     },
