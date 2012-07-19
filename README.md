@@ -275,6 +275,11 @@ Creates a new instance of class with `properties` and returns it to callback.
 Reads all objects from the databank with the given array of
 primary-key ids, and returns a map of {id: object}.
 
+* `readArray(ids, callback)`
+
+Reads all objects from the databank with the given array of
+primary-key ids, and returns an array of objects in the same order.
+
 Each instance has the following methods:
 
 * `update(properties, callback)`
