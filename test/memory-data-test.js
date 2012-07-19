@@ -5,8 +5,7 @@ var assert = require('assert'),
     Step = require('step'),
     databank = require('../lib/databank'),
     Databank = databank.Databank,
-    NoSuchThingError = databank.NoSuchThingError,
-    driverParams = require('./driver-params').driverParams;
+    NoSuchThingError = databank.NoSuchThingError;
 
 var suite = vows.describe('memory data param');
 
