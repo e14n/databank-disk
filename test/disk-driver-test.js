@@ -18,9 +18,13 @@
 
 var assert = require('assert'),
     vows = require('vows'),
-    databank = require('../lib/index');
+    databank = require('../lib/index'),
+    os = require('os'),
+    path = require('path');
 
-var suite = databank.DriverTest('disk', {mktmp: true});
+var dir = path.join(os.tmpDir(), "/disk-driver-test");
+
+var suite = databank.DriverTest('disk', {dir: dir});
 
 suite['export'](module);
 
