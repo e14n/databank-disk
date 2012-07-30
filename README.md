@@ -1,3 +1,5 @@
+# Databank
+
 This package is an abstraction tool for document stores or key-value
 stores in Node.js.
 
