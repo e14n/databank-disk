@@ -61,12 +61,19 @@ to need to be available to the 'databank' libraries so that
 * Install the driver in the `databank` dir, like so:
 
     npm install databank
+    
     cd node_modules/databank/
+    
     npm install databank-redis
 
 If you're still stuck, there's a `Databank.register()` method that
 will let you associate a databank driver class with a driver
 name. That's probably only a last resort, though.
+
+## Built-in drivers
+
+The built-in drivers are documented in MEMORY.md, DISK.md, and
+CACHING.md, respectively.
 
 # Schemata
 
