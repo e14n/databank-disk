@@ -14,6 +14,9 @@ I chose the name "databank" since it's not in widespread use and won't
 cause name conflicts, and because it sounds like something a 1960s
 robot would say.
 
+As a note: I've used this library for a couple of big projects, and
+mostly it just works.
+
 # License
 
 Copyright 2011, 2012, StatusNet Inc.
@@ -29,6 +32,41 @@ distributed under the License is distributed on an "AS IS" BASIS,
 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
+
+# Drivers
+
+The point of the Databank interface is so applications can use one
+interface for developing persistence code, and then at deployment time
+you can decide what driver to use.
+
+There are three drivers included in this package: 'memory', 'disk',
+and 'caching'. You should be able to develop code using one or both of
+the first two.
+
+There are a few drivers not in this package. You can search for them
+on npm; they all start with 'databank-'. So, 'databank-leveldb',
+'databank-mongodb', 'databank-memcached', 'databank-redis'.
+
+## Installation
+
+I'm still not 100% on this, so comments welcome. I'd love better
+instructions.
+
+At deployment time, if you want to use a particular driver, it's going
+to need to be available to the 'databank' libraries so that
+`Databank.get()` can find it. This means you have two options:
+
+* Install the driver globally, like `npm install -g databank-redis`. This is 
+  probably OK as long as you don't have version conflicts between apps.
+* Install the driver in the `databank` dir, like so:
+
+    npm install databank
+    cd node_modules/databank/
+    npm install databank-redis
+
+If you're still stuck, there's a `Databank.register()` method that
+will let you associate a databank driver class with a driver
+name. That's probably only a last resort, though.
 
 # Schemata
 
@@ -63,11 +101,11 @@ object like this:
 
 # Databank
 
-The class has a single static method for for initializing an instance:
+The class has a static method for for initializing an instance:
 
 * `get(driver, params)`
 
-  Get an instance of `DriverDatabank` from the module `driverdatabank` and
+  Get an instance of `DriverDatabank` from the module `databank-driver` and
   initialize it with the provided params (passed as a single object).
 
   This is the place you should usually pass in a schema parameter.
@@ -82,6 +120,15 @@ The class has a single static method for for initializing an instance:
         }
     });
 
+There's another static method to change how `get()` works:
+
+* `register(driver, cls)`
+
+   Register a class to use when `get()` asks for `driver`. This is
+   useful if for some reason your driver class isn't exported by the
+   `databank-driver` package somewhere. (I mainly use this for
+   unit-testing drivers.)
+   
 The databank interface has these methods:
 
 * `connect(params, onCompletion)`
@@ -197,6 +244,95 @@ The databank interface has these methods:
                     });
     }
 
+* `readAll(type, ids, onCompletion)`
+
+  Gets all the objects of type `type` with ids in the array
+  `ids`. Results are an object mapping an id to the results. If an ID
+  doesn't exist, the mapped value will be `null`.
+  
+  This is kind of like calling `read` over and over, but if the driver
+  supports multiple reads in one call, it can be much more performant.
+
+  `onCompletion` gets two arguments: an error, and the results map.
+
+## Integers
+
+These are special shims for integer values.
+
+* `incr(type, id, onCompletion)`
+
+  Increments the integer value of `type` and `id` by
+  one. `onCompletion` takes two params: an error, and the resulting
+  integer value. If integer value doesn't yet exists, goes to 1.
+  
+  Defaults to a `read` and an `update` or `create`, but drivers can
+  override to do an atomic increment.
+
+* `decr(type, id, onCompletion)`
+
+  Increments the integer value of `type` and `id` by
+  one. `onCompletion` takes two params: an error, and the resulting
+  integer value. If integer value doesn't yet exists, goes to -1.
+  
+  Defaults to a `read` and an `update` or `create`, but drivers can
+  override to do an atomic decrement.
+
+## Arrays
+
+These are special shims for array values.
+
+* `append(type, id, toAppend, onCompletion)`
+
+  Appends the value `toAppend` to the array at `type` and `id`.
+  `onCompletion` takes two params: an error, and the resulting
+  array. If array doesn't yet exists, it becomes a single-element
+  array.
+  
+  Defaults to a `read` and an `update` or `create`, but drivers can
+  override to do an atomic decrement.
+
+* `prepend(type, id, toPrepend, onCompletion)`
+
+  Prepends the value `toPrepend` to the array at `type` and `id`.
+  `onCompletion` takes two params: an error, and the resulting
+  array. If array doesn't yet exists, it becomes a single-element
+  array.
+
+  Defaults to a `read` and an `update` or `create`, but drivers can
+  override to do an atomic decrement.
+
+* `item(type, id, index, onCompletion)`
+
+  Gets the value at `index` in the array at `type` and `id`.
+  `onCompletion` takes two params: an error, and the resulting
+  item value.
+
+  Defaults to read the whole array and pluck out the value, but some
+  drivers might support atomic query of just one item.
+  
+* `slice(type, id, start, length, onCompletion)`
+
+  Like `Array.slice()`, gets the sub-array starting at index `start`
+  of length `length` of the array at `type` and `id`. `onCompletion`
+  takes two params: `err` for error, and `results` for the resulting
+  slice.
+
+  Defaults to read the whole array and pluck out the slice, but some
+  drivers might support atomic query of a slice.
+
+* `indexOf(type, id, item, onCompletion)`
+
+  Like `Array.indexOf()`, gets the first index of `item` in the array
+  at `type` and `id`. `onCompletion` takes two params: `err` for
+  error, and `index` for the resulting index. Will give an index of -1
+  (like Javascript) on a miss.
+
+* `remove(type, id, item, onCompletion)`
+
+  Like `Array.remove()`, removes the first instance of `item` in the
+  array at `type` and `id`. `onCompletion` takes one params: `err` for
+  error.
+
 # DatabankError
 
 This is a subclass of `Error` for stuff that went wrong with a
@@ -222,6 +358,14 @@ This is a subclass of `Error` for stuff that went wrong with a
 
   You already called `connect`.
 
+* `NoSuchItemError`
+
+  There's no item in that array with that value.
+  
+* `WrongTypeError`
+
+  You tried to use one of the array operators on a non-array value.
+  
 # DatabankObject
 
 This is a utility class for objects you want to store in a
