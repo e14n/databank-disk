@@ -1,7 +1,7 @@
 disk driver
 -----------
 
-The memory driver provides on-disk storage of data -- one file per
+The disk driver provides on-disk storage of data -- one file per
 object.
 
 Each databank is mapped to a directory; each type is a sub-directory
@@ -28,5 +28,3 @@ The driver takes the following parameters:
   of the id; for more efficient retrieval, there are hashed subdirs under each dir.
   So the `state` object stored under `BRh1Az3` will be found at `<maindir>/state/B/BR/BRh/BRh1Az3.json`.
   This value sets the number of subdirs to use.
-
-
