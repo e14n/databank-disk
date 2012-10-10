@@ -27,5 +27,3 @@ var dir = path.join(os.tmpDir(), "/disk-driver-test");
 var suite = databank.DriverTest('disk', {dir: dir});
 
 suite['export'](module);
-
-
