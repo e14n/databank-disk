@@ -1,6 +1,6 @@
 {
     "name": "databank",
-    "version": "0.14.1",
+    "version": "0.14.2",
     "engines": { "node": ">=0.6.x" },
     "author": "Evan Prodromou <evan@status.net>",
     "scripts": {"test": "vows test/*-test.js"},
@@ -10,6 +10,7 @@
     "dependencies": {
         "vows": "0.6.x", 
         "rimraf": "2.0.x",
+        "mkdirp": "0.3.x",
         "step": "0.0.x"
     },
     "repository": { "type":  "git",
