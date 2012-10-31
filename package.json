@@ -13,7 +13,7 @@
         "mkdirp": "0.3.x",
         "step": "0.0.x",
         "jankyqueue": "0.1.x",
-        "fs-ext": "0.2.0"
+        "fs-ext": "0.2.x"
     },
     "repository": { "type":  "git",
                     "url":   "http://github.com/evanp/databank.git" }
