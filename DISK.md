@@ -23,7 +23,7 @@ The driver takes the following parameters:
 * `mktmp`: if truthy, `dir` will be ignored, and a new temporary directory
   under `os.tmpDir()` will be made. The temporary dir will be deleted when
   the databank is disconnected.
-* `mode`: creation mode for the main databank dir and its subdirs; default is `0755`.
+* `mode`: creation mode for the main databank dir and its subdirs; default is `0660`.
 * `hashDepth`: files under the type subdirs are stored according to a hash
   of the id; for more efficient retrieval, there are hashed subdirs under each dir.
   So the `state` object stored under `BRh1Az3` will be found at `<maindir>/state/B/BR/BRh/BRh1Az3.json`.
