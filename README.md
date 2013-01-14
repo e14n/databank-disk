@@ -239,7 +239,7 @@ The databank interface has these methods:
         var results = [];
 
         bank.search('user', {role: 'moderator'}, function(result) {
-                        results.append(result);
+                        results.push(result);
                     },
                     function(err) {
                         if (err) {
@@ -293,22 +293,20 @@ These are special shims for array values.
 * `append(type, id, toAppend, onCompletion)`
 
   Appends the value `toAppend` to the array at `type` and `id`.
-  `onCompletion` takes two params: an error, and the resulting
-  array. If array doesn't yet exists, it becomes a single-element
-  array.
+  `onCompletion` takes one param: an error. If array doesn't yet
+  exists, it becomes a single-element array.
   
   Defaults to a `read` and an `update` or `create`, but drivers can
-  override to do an atomic decrement.
+  override to do an atomic append.
 
 * `prepend(type, id, toPrepend, onCompletion)`
 
   Prepends the value `toPrepend` to the array at `type` and `id`.
-  `onCompletion` takes two params: an error, and the resulting
-  array. If array doesn't yet exists, it becomes a single-element
-  array.
+  `onCompletion` takes one param: an error. If array doesn't yet
+  exists, it becomes a single-element array.
 
   Defaults to a `read` and an `update` or `create`, but drivers can
-  override to do an atomic decrement.
+  override to do an atomic prepend.
 
 * `item(type, id, index, onCompletion)`
 
