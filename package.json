@@ -1,14 +1,14 @@
 {
-    "name": "databank",
-    "version": "0.16.0",
+    "name": "databank-disk",
+    "version": "0.17.0",
     "engines": { "node": ">=0.6.x" },
-    "author": "Evan Prodromou <evan@status.net>",
+    "author": "Evan Prodromou <evan@e14n.com>",
     "scripts": {"test": "vows test/*-test.js"},
     "main": "./lib/index.js",
     "directories": {"lib": "./lib/"},
-    "description": "Abstraction layer for JSON storage",
+    "description": "Databank driver for simple disk storage",
     "dependencies": {
-        "vows": "0.6.x", 
+        "databank": "0.16.x",
         "rimraf": "2.0.x",
         "mkdirp": "0.3.x",
         "step": "0.0.x",
@@ -17,5 +17,5 @@
         "schlock": "0.1.x"
     },
     "repository": { "type":  "git",
-                    "url":   "http://github.com/evanp/databank.git" }
+                    "url":   "http://github.com/e14n/databank-disk.git" }
 }
