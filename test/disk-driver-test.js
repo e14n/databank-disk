@@ -18,11 +18,15 @@
 
 var assert = require('assert'),
     vows = require('vows'),
-    databank = require('../lib/index'),
+    databank = require('databank'),
+    Databank = databank.Databank,
+    DiskDatabank = require('../lib/disk'),
     os = require('os'),
     path = require('path');
 
 var dir = path.join(os.tmpDir(), "/disk-driver-test");
+
+Databank.register('disk', DiskDatabank);
 
 var suite = databank.DriverTest('disk', {dir: dir});
 

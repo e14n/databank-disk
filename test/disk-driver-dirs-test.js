@@ -18,8 +18,9 @@
 
 var assert = require('assert'),
     vows = require('vows'),
-    databank = require('../lib/index'),
+    databank = require('databank'),
     Databank = databank.Databank,
+    DiskDatabank = require('../lib/disk'),
     os = require('os'),
     fs = require('fs'),
     path = require('path');
@@ -105,5 +106,7 @@ suite.addBatch({
         }
     }
 });
+
+Databank.register('disk', DiskDatabank);
 
 suite['export'](module);

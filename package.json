@@ -1,20 +1,23 @@
 {
     "name": "databank-disk",
-    "version": "0.17.0",
+    "version": "0.17.1",
     "engines": { "node": ">=0.6.x" },
     "author": "Evan Prodromou <evan@e14n.com>",
     "scripts": {"test": "vows test/*-test.js"},
-    "main": "./lib/index.js",
+    "main": "./lib/disk.js",
     "directories": {"lib": "./lib/"},
     "description": "Databank driver for simple disk storage",
     "dependencies": {
-        "databank": "0.16.x",
+        "databank": "0.17.x",
         "rimraf": "2.0.x",
         "mkdirp": "0.3.x",
         "step": "0.0.x",
         "jankyqueue": "0.1.x",
-        "fs-ext": "0.2.x",
+        "fs-ext": "0.3.x",
         "schlock": "0.1.x"
+    },
+    "devDependencies": {
+        "vows": "0.7.x"
     },
     "repository": { "type":  "git",
                     "url":   "http://github.com/e14n/databank-disk.git" }
