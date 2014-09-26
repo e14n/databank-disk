@@ -8,7 +8,7 @@
     "directories": {"lib": "./lib/"},
     "description": "Databank driver for simple disk storage",
     "dependencies": {
-        "databank": "0.16.x",
+        "databank": "0.17.x",
         "rimraf": "2.0.x",
         "mkdirp": "0.3.x",
         "step": "0.0.x",
