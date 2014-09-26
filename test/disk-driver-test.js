@@ -18,7 +18,7 @@
 
 var assert = require('assert'),
     vows = require('vows'),
-    databank = require('../lib/index'),
+    databank = require('databank'),
     os = require('os'),
     path = require('path');
 
