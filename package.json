@@ -1,22 +1,30 @@
 {
-    "name": "databank-disk",
-    "version": "0.17.0",
-    "engines": { "node": ">=0.6.x" },
-    "author": "Evan Prodromou <evan@e14n.com>",
-    "scripts": {"test": "vows test/*-test.js"},
-    "main": "./lib/index.js",
-    "directories": {"lib": "./lib/"},
-    "description": "Databank driver for simple disk storage",
-    "dependencies": {
-        "databank": "0.16.x",
-        "rimraf": "2.0.x",
-        "mkdirp": "0.3.x",
-        "step": "0.0.x",
-        "jankyqueue": "0.1.x",
-        "fs-ext": "0.2.x",
-        "schlock": "0.1.x"
-    },
-    "license": "Apache-2.0",
-    "repository": { "type":  "git",
-                    "url":   "http://github.com/e14n/databank-disk.git" }
+  "name": "databank-disk",
+  "version": "0.17.0",
+  "engines": {
+    "node": ">=0.6.x"
+  },
+  "author": "Evan Prodromou <evan@e14n.com>",
+  "scripts": {
+    "test": "vows test/*-test.js"
+  },
+  "main": "./lib/index.js",
+  "directories": {
+    "lib": "./lib/"
+  },
+  "description": "Databank driver for simple disk storage",
+  "dependencies": {
+    "databank": "0.16.x",
+    "fs-ext": "0.2.x",
+    "jankyqueue": "0.1.x",
+    "mkdirp": "0.3.x",
+    "rimraf": "2.0.x",
+    "schlock": "0.1.x",
+    "step": "0.0.x"
+  },
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/e14n/databank-disk.git"
+  }
 }
