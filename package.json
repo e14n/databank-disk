@@ -14,8 +14,8 @@
   },
   "description": "Databank driver for simple disk storage",
   "dependencies": {
-    "databank": "0.16.x",
-    "fs-ext": "0.2.x",
+    "databank": "^0.19.5",
+    "fs-ext": "^0.5.0",
     "jankyqueue": "0.1.x",
     "mkdirp": "0.3.x",
     "rimraf": "2.0.x",
