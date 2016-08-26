@@ -16,6 +16,7 @@
         "fs-ext": "0.2.x",
         "schlock": "0.1.x"
     },
+    "license": "Apache-2.0",
     "repository": { "type":  "git",
                     "url":   "http://github.com/e14n/databank-disk.git" }
 }
