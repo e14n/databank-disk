@@ -20,6 +20,7 @@ var assert = require('assert'),
     vows = require('vows'),
     databank = require('databank'),
     Databank = databank.Databank,
+    DiskDatabank = require('../lib/disk'),
     os = require('os'),
     fs = require('fs'),
     path = require('path');
@@ -51,6 +52,8 @@ var haveDir = function(rel) {
         }
     };
 };
+
+Databank.register('disk', DiskDatabank);
 
 var suite = vows.describe('disk directories');
 
