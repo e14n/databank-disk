@@ -24,7 +24,7 @@ var assert = require('assert'),
     os = require('os'),
     path = require('path');
 
-var dir = path.join(os.tmpDir(), "/disk-driver-test");
+var dir = path.join(os.tmpdir(), "/disk-driver-test");
 
 Databank.register('disk', DiskDatabank);
 

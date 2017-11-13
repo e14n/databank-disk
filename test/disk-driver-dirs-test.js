@@ -25,7 +25,7 @@ var assert = require('assert'),
     fs = require('fs'),
     path = require('path');
 
-var dir = path.join(os.tmpDir(), "/disk-driver-dirs-test");
+var dir = path.join(os.tmpdir(), "/disk-driver-dirs-test");
 
 var schema = {
     person: {
