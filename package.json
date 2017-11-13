@@ -26,5 +26,8 @@
   "repository": {
     "type": "git",
     "url": "http://github.com/e14n/databank-disk.git"
+  },
+  "devDependencies": {
+    "vows": "^0.8.1"
   }
 }
