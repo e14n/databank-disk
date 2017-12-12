@@ -16,18 +16,16 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-var assert = require('assert'),
-    vows = require('vows'),
-    databank = require('databank'),
+var databank = require('databank'),
     Databank = databank.Databank,
     DiskDatabank = require('../lib/disk'),
     os = require('os'),
-    path = require('path');
+    path = require('path')
 
-var dir = path.join(os.tmpdir(), "/disk-driver-test");
+var dir = path.join(os.tmpdir(), '/disk-driver-test')
 
-Databank.register('disk', DiskDatabank);
+Databank.register('disk', DiskDatabank)
 
-var suite = databank.DriverTest('disk', {dir: dir});
+var suite = databank.DriverTest('disk', {dir: dir})
 
-suite['export'](module);
+suite['export'](module)

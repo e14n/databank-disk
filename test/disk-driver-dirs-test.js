@@ -23,90 +23,90 @@ var assert = require('assert'),
     DiskDatabank = require('../lib/disk'),
     os = require('os'),
     fs = require('fs'),
-    path = require('path');
+    path = require('path')
 
-var dir = path.join(os.tmpdir(), "/disk-driver-dirs-test");
+var dir = path.join(os.tmpdir(), '/disk-driver-dirs-test')
 
 var schema = {
     person: {
-        pkey: "email"
+        pkey: 'email'
     },
     house: {
-        pkey: "streetAddress",
-        indices: ["neighborhood", "owner.lastName"]
+        pkey: 'streetAddress',
+        indices: ['neighborhood', 'owner.lastName']
     },
     car: {
-        pkey: "vin",
-        indices: ["licensePlate", "model"]
+        pkey: 'vin',
+        indices: ['licensePlate', 'model']
     }
-};
+}
 
 var haveDir = function(rel) {
     return {
         topic: function(db) {
-            fs.stat(path.join(db.dir, rel), this.callback);
+            fs.stat(path.join(db.dir, rel), this.callback)
         },
-        "it exists": function(err, stat) {
-            assert.ifError(err);
-            assert.isTrue(stat.isDirectory());
+        'it exists': function(err, stat) {
+            assert.ifError(err)
+            assert.isTrue(stat.isDirectory())
         }
-    };
-};
+    }
+}
 
-Databank.register('disk', DiskDatabank);
+Databank.register('disk', DiskDatabank)
 
-var suite = vows.describe('disk directories');
+var suite = vows.describe('disk directories')
 
 suite.addBatch({
     'When we create a disk databank': {
         topic: function() {
-            return Databank.get("disk", {dir: dir, schema: schema});
+            return Databank.get('disk', {dir: dir, schema: schema})
         },
-        "it works": function(db) {
-            assert.ok(db);
+        'it works': function(db) {
+            assert.ok(db)
         },
-        "and we connect": {
+        'and we connect': {
             topic: function(db) {
-                db.connect({}, this.callback);
+                db.connect({}, this.callback)
             },
             teardown: function(db) {
-                db.disconnect(function(err) {});
+                db.disconnect(function() {})
             },
-            "it works": function(err) {
-                assert.ifError(err);
+            'it works': function(err) {
+                assert.ifError(err)
             },
-            "and we check the main directory": haveDir(""),
-            "and we check the person directory": haveDir("person"),
-            "and we check the house directory": haveDir("house"),
-            "and we check the car directory": haveDir("car")
+            'and we check the main directory': haveDir(''),
+            'and we check the person directory': haveDir('person'),
+            'and we check the house directory': haveDir('house'),
+            'and we check the car directory': haveDir('car')
         }
     }
-});
+})
 
 suite.addBatch({
     'When we create a disk databank': {
         topic: function() {
-            return Databank.get("disk", {mktmp: true, schema: schema});
+            return Databank.get('disk', {mktmp: true, schema: schema})
         },
-        "it works": function(db) {
-            assert.ok(db);
+        'it works': function(db) {
+            assert.ok(db)
         },
-        "and we connect": {
+        'and we connect': {
             topic: function(db) {
-                db.connect({}, this.callback);
+                db.connect({}, this.callback)
             },
             teardown: function(db) {
-                db.disconnect(function(err) {});
+                db.disconnect(function() {})
             },
-            "it works": function(err) {
-                assert.ifError(err);
+            'it works': function(err) {
+                assert.ifError(err)
             },
-            "and we check the main directory": haveDir(""),
-            "and we check the person directory": haveDir("person"),
-            "and we check the house directory": haveDir("house"),
-            "and we check the car directory": haveDir("car")
+            'and we check the main directory': haveDir(''),
+            'and we check the person directory': haveDir('person'),
+            'and we check the house directory': haveDir('house'),
+            'and we check the car directory': haveDir('car')
         }
     }
-});
+})
 
-suite['export'](module);
+suite['export'](module)

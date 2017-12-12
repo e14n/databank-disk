@@ -6,7 +6,8 @@
   },
   "author": "Evan Prodromou <evan@e14n.com>",
   "scripts": {
-    "test": "vows test/*-test.js"
+    "test": "vows test/*-test.js",
+    "lint": "eslint lib/*.js test/*.js"
   },
   "main": "./lib/disk.js",
   "directories": {
