@@ -20,7 +20,7 @@
     "jankyqueue": "0.1.x",
     "mkdirp": "^0.5.1",
     "rimraf": "^2.6.2",
-    "schlock": "0.1.x",
+    "schlock": "^0.2.1",
     "step": "0.0.x"
   },
   "license": "Apache-2.0",
