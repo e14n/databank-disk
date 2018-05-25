@@ -18,7 +18,7 @@
     "databank": "^1.0.6",
     "fs-ext": "^1.0.0",
     "jankyqueue": "0.1.x",
-    "mkdirp": "0.3.x",
+    "mkdirp": "^0.5.1",
     "rimraf": "2.0.x",
     "schlock": "0.1.x",
     "step": "0.0.x"
